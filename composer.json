@@ -1,0 +1,20 @@
+{
+    "name": "wirams/fusio-crud-gen",
+    "description": "Fusio CRUD Generator",
+    "type": "project",
+    "require": {
+        "nette/php-generator": "^3.5",
+        "doctrine/dbal": "^3.1"
+    },
+    "autoload": {
+        "psr-4": {
+            "Wirams\\FusioCrudGen\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "wira m. sukoco",
+            "email": "wira.msukoco@gmail.com"
+        }
+    ]
+}

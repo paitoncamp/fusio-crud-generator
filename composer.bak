@@ -1,0 +1,6 @@
+{
+    "require": {
+        "nette/php-generator": "^3.5",
+        "doctrine/dbal": "^3.1"
+    }
+}
