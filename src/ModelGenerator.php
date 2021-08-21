@@ -43,6 +43,7 @@ class ModelGenerator extends GeneratorAbstract {
 		$this->generateMethods();
 		
 		$phpFile = new PhpFile();
+		$phpFile->setStrictTypes();  //set Model as strict mode = 1
 		$phpFile->addComment('This file is auto-generated.');
 		$phpFile->addNamespace($this->classNamespace);
 		
