@@ -22,7 +22,7 @@ $databases = $databaseRepository->getDatabases($connection);
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h1 class="text-success">Entity/Schema Generator</h1>	
+				<h1 class="text-success">Model Generator</h1>	
 			</div>
 		</div>
 		<div class="row">
@@ -44,7 +44,7 @@ $databases = $databaseRepository->getDatabases($connection);
 				?>
 			</div>
 		</div>
-		<form action="generateSchema.php" method="POST">
+		<form action="generator.php" method="POST">
 			<div class="row">
 				<div class="col-md-4">
 					<label for="database">Select Dabases <span class="text-danger">*</span></label>
@@ -57,6 +57,7 @@ $databases = $databaseRepository->getDatabases($connection);
 						}
 						?>
 					</select>
+					<input type="hidden" id="gentype" name="gentype" value="model"/>
 				</div>
 				<div class="col-md-4 col-md-offset-1">
 					<label for="tables">Select Tables <span class="text-danger">*</span> <small class="tableLoading text-info"></small></label>
@@ -68,7 +69,7 @@ $databases = $databaseRepository->getDatabases($connection);
 			<br /><br />
 			<div class="row">
 				<div class="col-md-12">
-					<input type="submit" value="Generate Schema" class="btn btn-success">
+					<input type="submit" value="Generate Model" class="btn btn-success">
 				</div>
 			</div>
 		</form>
@@ -77,7 +78,7 @@ $databases = $databaseRepository->getDatabases($connection);
 				<h1 class="text-success">Service Generator</h1>	
 			</div>
 		</div>
-		<form action="generateService.php" method="POST">
+		<form action="generator.php" method="POST">
 			<div class="row">
 				<div class="col-md-4">
 					<label for="database">Select Dabases <span class="text-danger">*</span></label>
@@ -90,8 +91,8 @@ $databases = $databaseRepository->getDatabases($connection);
 						}
 						?>
 					</select>
-					<input class="form-check-input" type="checkbox" id="multitenantenable1" name="multitenantenable" value="multitenancy">
-					<label class="form-check-label" for="multitenantenable1">Multitenant Enabled?</label>
+					<input type="hidden" id="gentype" name="gentype" value="service"/>
+					
 				</div>
 				<div class="col-md-4 col-md-offset-1">
 					<label for="tables">Select Tables <span class="text-danger">*</span> <small class="tableLoading text-info"></small></label>
@@ -128,8 +129,7 @@ $databases = $databaseRepository->getDatabases($connection);
 						?>
 					</select>
 					<input type="hidden" id="gentype" name="gentype" value="action"/>
-					<input class="form-check-input" type="checkbox" id="multitenantenable2" name="multitenantenable" value="multitenancy">
-					<label class="form-check-label" for="multitenantenable2">Multitenant Enabled?</label>
+					
 				</div>
 				<div class="col-md-4 col-md-offset-1">
 					<label for="tables">Select Tables <span class="text-danger">*</span> <small class="tableLoading text-info"></small></label>
@@ -142,6 +142,42 @@ $databases = $databaseRepository->getDatabases($connection);
 			<div class="row">
 				<div class="col-md-12">
 					<input type="submit" value="Generate Actions" class="btn btn-success">
+				</div>
+			</div>
+		</form>
+		
+		<div class="row">
+			<div class="col-md-12">
+				<h1 class="text-success">Repository Generator</h1>	
+			</div>
+		</div>
+		<form action="generator.php" method="POST">
+			<div class="row">
+				<div class="col-md-4">
+					<label for="database">Select Databases <span class="text-danger">*</span></label>
+					<select name="database" id="database3" class="form-control" required="required">
+						<?php
+						foreach($databases as $database){
+						?>
+						<option value="<?php echo $database; ?>"> <?php echo $database; ?></option>
+						<?php
+						}
+						?>
+					</select>
+					<input type="hidden" id="gentype" name="gentype" value="repository"/>
+					
+				</div>
+				<div class="col-md-4 col-md-offset-1">
+					<label for="tables">Select Tables <span class="text-danger">*</span> <small class="tableLoading text-info"></small></label>
+					<select name="tables" id="tables3" class="form-control" multiple="multiple" required="required">
+						
+					</select>
+				</div>
+			</div>
+			<br /><br />
+			<div class="row">
+				<div class="col-md-12">
+					<input type="submit" value="Generate Repository" class="btn btn-success">
 				</div>
 			</div>
 		</form>
@@ -181,6 +217,19 @@ $databases = $databaseRepository->getDatabases($connection);
 			});
 
 			$('#tables2').SumoSelect({
+				search: true, 
+				searchText: 'Search Tables Name',
+				selectAll: true,
+				outputAsCSV : true,
+				csvSepChar: ','
+			});	
+			
+			$('#database3').SumoSelect({
+				search: true, 
+				searchText: 'Search Database Name'
+			});
+
+			$('#tables3').SumoSelect({
 				search: true, 
 				searchText: 'Search Tables Name',
 				selectAll: true,

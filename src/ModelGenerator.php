@@ -51,7 +51,7 @@ class ModelGenerator extends GeneratorAbstract {
 		
 		FileSystem::createDir($location);
 		FileSystem::write($location."\\".$this->className.".php",$this->classPrinter->printFile($phpFile));
-		return self::REPOSITORY_CLASS." - ".$this->className." generated!";
+		return $this->classType." - ".$this->className." generated!";
 		
 		//return $this->classNamespace;
 	}
