@@ -65,7 +65,8 @@ abstract class GeneratorAbstract {
 	
 	
 	protected function _camelCase($c,$capitalizeFirstCharacter=false){
-		$str = str_replace(' ', '', ucwords(str_replace('_', ' ', $c)));
+		$a= array("_","-");
+		$str = str_replace(' ', '', ucwords(str_replace($a, ' ', $c)));
 
 		if (!$capitalizeFirstCharacter) {
 			$str[0] = strtolower($str[0]);

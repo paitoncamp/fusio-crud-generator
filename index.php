@@ -22,7 +22,7 @@ $databases = $databaseRepository->getDatabases($connection);
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
-				<h1 class="text-success">Model Generator</h1>	
+				<h1 class="text-success">Fusio Source Generator</h1>	
 			</div>
 		</div>
 		<div class="row">
@@ -57,7 +57,9 @@ $databases = $databaseRepository->getDatabases($connection);
 						}
 						?>
 					</select>
-					<input type="hidden" id="gentype" name="gentype" value="model"/>
+					<!--input type="hidden" id="gentype" name="gentype" value="model"/-->
+					
+					
 				</div>
 				<div class="col-md-4 col-md-offset-1">
 					<label for="tables">Select Tables <span class="text-danger">*</span> <small class="tableLoading text-info"></small></label>
@@ -66,121 +68,30 @@ $databases = $databaseRepository->getDatabases($connection);
 					</select>
 				</div>
 			</div>
-			<br /><br />
-			<div class="row">
-				<div class="col-md-12">
-					<input type="submit" value="Generate Model" class="btn btn-success">
-				</div>
-			</div>
-		</form>
-		<div class="row">
-			<div class="col-md-12">
-				<h1 class="text-success">Service Generator</h1>	
-			</div>
-		</div>
-		<form action="generator.php" method="POST">
+			<br />
 			<div class="row">
 				<div class="col-md-4">
-					<label for="database">Select Dabases <span class="text-danger">*</span></label>
-					<select name="database" id="database1" class="form-control" required="required">
-						<?php
-						foreach($databases as $database){
-						?>
-						<option value="<?php echo $database; ?>"> <?php echo $database; ?></option>
-						<?php
-						}
-						?>
-					</select>
-					<input type="hidden" id="gentype" name="gentype" value="service"/>
+					<input class="form-check-input" type="checkbox"  name="gentype[]" value="model">
+					<label class="form-check-label" for="model">Model</label>
 					
+					<input class="form-check-input" type="checkbox"  name="gentype[]" value="repository">
+					<label class="form-check-label" for="repository">Repository</label>
+					
+					<input class="form-check-input" type="checkbox" name="gentype[]" value="service">
+					<label class="form-check-label" for="service">Service</label>
+					
+					<input class="form-check-input" type="checkbox"  name="gentype[]" value="actions">
+					<label class="form-check-label" for="actions">Actions</label>
 				</div>
-				<div class="col-md-4 col-md-offset-1">
-					<label for="tables">Select Tables <span class="text-danger">*</span> <small class="tableLoading text-info"></small></label>
-					<select name="tables" id="tables1" class="form-control" multiple="multiple" required="required">
-						
-					</select>
-				</div>
-				
 			</div>
 			<br /><br />
 			<div class="row">
 				<div class="col-md-12">
-					<input type="submit" value="Generate Service" class="btn btn-success">
+					<input type="submit" value="Generate" class="btn btn-success">
 				</div>
 			</div>
 		</form>
 		
-		<div class="row">
-			<div class="col-md-12">
-				<h1 class="text-success">Actions Generator</h1>	
-			</div>
-		</div>
-		<form action="generator.php" method="POST">
-			<div class="row">
-				<div class="col-md-4">
-					<label for="database">Select Dabases <span class="text-danger">*</span></label>
-					<select name="database" id="database2" class="form-control" required="required">
-						<?php
-						foreach($databases as $database){
-						?>
-						<option value="<?php echo $database; ?>"> <?php echo $database; ?></option>
-						<?php
-						}
-						?>
-					</select>
-					<input type="hidden" id="gentype" name="gentype" value="action"/>
-					
-				</div>
-				<div class="col-md-4 col-md-offset-1">
-					<label for="tables">Select Tables <span class="text-danger">*</span> <small class="tableLoading text-info"></small></label>
-					<select name="tables" id="tables2" class="form-control" multiple="multiple" required="required">
-						
-					</select>
-				</div>
-			</div>
-			<br /><br />
-			<div class="row">
-				<div class="col-md-12">
-					<input type="submit" value="Generate Actions" class="btn btn-success">
-				</div>
-			</div>
-		</form>
-		
-		<div class="row">
-			<div class="col-md-12">
-				<h1 class="text-success">Repository Generator</h1>	
-			</div>
-		</div>
-		<form action="generator.php" method="POST">
-			<div class="row">
-				<div class="col-md-4">
-					<label for="database">Select Databases <span class="text-danger">*</span></label>
-					<select name="database" id="database3" class="form-control" required="required">
-						<?php
-						foreach($databases as $database){
-						?>
-						<option value="<?php echo $database; ?>"> <?php echo $database; ?></option>
-						<?php
-						}
-						?>
-					</select>
-					<input type="hidden" id="gentype" name="gentype" value="repository"/>
-					
-				</div>
-				<div class="col-md-4 col-md-offset-1">
-					<label for="tables">Select Tables <span class="text-danger">*</span> <small class="tableLoading text-info"></small></label>
-					<select name="tables" id="tables3" class="form-control" multiple="multiple" required="required">
-						
-					</select>
-				</div>
-			</div>
-			<br /><br />
-			<div class="row">
-				<div class="col-md-12">
-					<input type="submit" value="Generate Repository" class="btn btn-success">
-				</div>
-			</div>
-		</form>
 	</div>
 	
 	<script>
